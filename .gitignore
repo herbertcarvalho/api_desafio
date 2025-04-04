@@ -1,0 +1,21 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+*/obj/*
+*/bin/*
+/.vs
+/Backend.Erp.Skeleton.Api/obj/
+/Backend.Erp.Skeleton.Api/bin/
+/Backend.Erp.Skeleton.Domain/obj/
+/Backend.Erp.Skeleton.Domain/bin/
+/Backend.Erp.Skeleton.Infrastructure/obj/
+/Backend.Erp.Skeleton.Infrastructure/bin/
+/Backend.Erp.Skeleton.Application/obj/
+/Backend.Erp.Skeleton.Application/bin/
+/Backend.Erp.Skeleton.Api/bin/
+/Backend.Erp.Skeleton.Api/obj/Backend.Erp.Skeleton.Api.csproj.nuget.dgspec.json
+/Backend.Erp.Skeleton.Api/obj/project.assets.json
+/Backend.Erp.Skeleton.Api/obj/project.nuget.cache
+/Backend.Erp.Skeleton.Infrastructure/obj/Backend.Erp.Skeleton.Infrastructure.csproj.nuget.dgspec.json
+/Backend.Erp.Skeleton.Infrastructure/obj/project.assets.json
+/Backend.Erp.Skeleton.Infrastructure/obj/project.nuget.cache
