@@ -55,7 +55,6 @@ namespace Backend.Erp.Skeleton.Application.Commands
             if (existsCpf)
                 throw new ApiException("Esse cpf já foi cadastrado.");*/
 
-
             var resultCreateUser = await _userManager.CreateAsync(user, request.Model.password);
             if (!resultCreateUser.Succeeded)
                 throw new Exception($"Não foi possível cadastrar o novo usuário. {String.Join(',', resultCreateUser.Errors.Select(x => x.Description))}");

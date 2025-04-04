@@ -27,6 +27,10 @@ namespace Backend.Erp.Skeleton.Infrastructure.Extensions
         {
             services.AddTransient(typeof(IRepositoryAsync<>), typeof(RepositoryAsync<>));
             services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<ICategoriesRepository, CategoriesRepository>();
+            services.AddScoped<IPersonsRepository, PersonsRepository>();
+            services.AddScoped<IProductsRepository, ProductsRepository>();
+            services.AddScoped<ICompanyRepository, CompanyRepository>();
         }
 
         public static void AddIdentity(this IServiceCollection services, IConfiguration configuration)
