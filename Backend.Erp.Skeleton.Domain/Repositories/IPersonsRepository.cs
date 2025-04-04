@@ -11,5 +11,12 @@ namespace Backend.Erp.Skeleton.Domain.Repositories
         /// <param name="cpf">Cpf do usuário a ser buscado</param>
         /// <returns>O resultado é um boleano</returns>
         Task<bool> Any(string cpf);
+
+        /// <summary>
+        /// Este método um usuário com o id usuário fornecido
+        /// </summary>
+        /// <param name="idUser">Id do usuário a ser buscado</param>
+        /// <returns>O resultado é uma entidade Persons</returns>
+        Task<Persons> Get(int idUser);
     }
 }

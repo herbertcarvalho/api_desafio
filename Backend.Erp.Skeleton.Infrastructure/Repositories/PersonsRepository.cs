@@ -14,5 +14,8 @@ namespace Backend.Erp.Skeleton.Infrastructure.Repositories
 
         public async Task<bool> Any(string cpf)
             => await Query().AnyAsync(x => x.cpf == cpf);
+
+        public async Task<Persons> Get(int idUser)
+            => await Query().FirstOrDefaultAsync(x => x.idUser == idUser);
     }
 }
