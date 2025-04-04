@@ -1,4 +1,4 @@
-﻿using Backend.Erp.Skeleton.Application.Commands;
+﻿using Backend.Erp.Skeleton.Application.Commands.Authorization;
 using Backend.Erp.Skeleton.Application.DTOs.Request.Authorization;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -28,7 +28,9 @@ namespace Backend.Erp.Skeleton.Api.Controllers.v1
         [HttpPost("register")]
         public async Task<ActionResult> ResetPassword([FromBody] RegisterUserRequest model)
         {
-            return Ok();
+            var sendRequest = new RegisterUserCommand(model);
+            var result = await Mediator.Send(sendRequest);
+            return Ok(result);
         }
     }
 }

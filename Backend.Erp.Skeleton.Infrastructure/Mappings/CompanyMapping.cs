@@ -13,7 +13,7 @@ namespace Backend.Erp.Skeleton.Infrastructure.Mappings
 
             builder.Property(x => x.cnpj).IsRequired().HasMaxLength(14);
             builder.Property(x => x.name).IsRequired().HasMaxLength(100);
-            builder.Property(x => x.image).IsRequired();
+            builder.Property(x => x.image);
 
 
             builder.HasIndex(x => x.cnpj).IsUnique();

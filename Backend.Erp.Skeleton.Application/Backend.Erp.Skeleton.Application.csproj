@@ -48,6 +48,5 @@
     <Folder Include="DTOs\Authorization\" />
     <Folder Include="DTOs\Response\base\" />
     <Folder Include="Services\" />
-    <Folder Include="Validators\" />
   </ItemGroup>
 </Project>

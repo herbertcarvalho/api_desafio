@@ -82,7 +82,7 @@ app.UseAuthorization();
 app.MapControllers();
 app.MapHealthChecks("/health");
 
-//await CreateRoles(app.Services);
+await CreateRoles(app.Services);
 
 app.Run();
 

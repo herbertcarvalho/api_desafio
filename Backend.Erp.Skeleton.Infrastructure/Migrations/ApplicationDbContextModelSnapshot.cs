@@ -78,7 +78,6 @@ namespace Backend.Erp.Skeleton.Infrastructure.Migrations
                         .HasColumnType("integer");
 
                     b.Property<string>("image")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("name")
@@ -105,8 +104,13 @@ namespace Backend.Erp.Skeleton.Infrastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
 
+                    b.Property<int>("IdUserType")
+                        .HasColumnType("integer");
+
                     b.Property<string>("cpf")
-                        .HasColumnType("text");
+                        .IsRequired()
+                        .HasMaxLength(11)
+                        .HasColumnType("character varying(11)");
 
                     b.Property<DateTime>("createdAt")
                         .HasColumnType("timestamp with time zone");
@@ -120,8 +124,13 @@ namespace Backend.Erp.Skeleton.Infrastructure.Migrations
                     b.Property<int>("idLastModifiedBy")
                         .HasColumnType("integer");
 
+                    b.Property<int>("idUser")
+                        .HasColumnType("integer");
+
                     b.Property<string>("name")
-                        .HasColumnType("text");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.Property<DateTime?>("updatedAt")
                         .HasColumnType("timestamp with time zone");

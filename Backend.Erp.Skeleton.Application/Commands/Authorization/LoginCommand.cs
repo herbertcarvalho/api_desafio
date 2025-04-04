@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Backend.Erp.Skeleton.Application.Commands
+namespace Backend.Erp.Skeleton.Application.Commands.Authorization
 {
     public record LoginUserCommand(LoginUserRequest Model) : IRequest<Result<UsuarioToken>>;
 

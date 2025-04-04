@@ -78,7 +78,7 @@ namespace Backend.Erp.Skeleton.Infrastructure.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     cnpj = table.Column<string>(type: "character varying(14)", maxLength: 14, nullable: false),
                     name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
-                    image = table.Column<string>(type: "text", nullable: false),
+                    image = table.Column<string>(type: "text", nullable: true),
                     idCreatedBy = table.Column<int>(type: "integer", nullable: false),
                     createdAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     idLastModifiedBy = table.Column<int>(type: "integer", nullable: false),
@@ -201,9 +201,11 @@ namespace Backend.Erp.Skeleton.Infrastructure.Migrations
                 {
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    idUser = table.Column<int>(type: "integer", nullable: false),
+                    IdUserType = table.Column<int>(type: "integer", nullable: false),
                     idCompany = table.Column<int>(type: "integer", nullable: true),
-                    cpf = table.Column<string>(type: "text", nullable: true),
-                    name = table.Column<string>(type: "text", nullable: true),
+                    cpf = table.Column<string>(type: "character varying(11)", maxLength: 11, nullable: false),
+                    name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
                     idCreatedBy = table.Column<int>(type: "integer", nullable: false),
                     createdAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     idLastModifiedBy = table.Column<int>(type: "integer", nullable: false),

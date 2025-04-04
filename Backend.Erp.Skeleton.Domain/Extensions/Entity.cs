@@ -6,7 +6,7 @@ namespace Backend.Erp.Skeleton.Domain.Extensions
     {
         protected Entity()
         {
-            createdAt = DateTime.Now;
+            createdAt = DateTime.UtcNow;
         }
         public int id { get; set; }
         public int idCreatedBy { get; set; }

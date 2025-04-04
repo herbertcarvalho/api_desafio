@@ -1,5 +1,8 @@
 ﻿using Backend.Erp.Skeleton.Application.DTOs.Response.Authorization;
+using Backend.Erp.Skeleton.Application.Extensions;
 using Backend.Erp.Skeleton.Application.Helpers.Interfaces;
+using Backend.Erp.Skeleton.Domain.Entities;
+using Backend.Erp.Skeleton.Domain.Enums;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -24,19 +27,22 @@ namespace Backend.Erp.Skeleton.Application.Helpers
             _roleManager = roleManager;
         }
 
-        public async Task<UsuarioToken> GenerateToken()
+        public async Task<UsuarioToken> GenerateToken(Persons person)
         {
-            /*var role = await _roleManager.FindByNameAsync(((UserTypeEnum)person.IdUserType).StringValue());*/
-            ///var claim = await _roleManager.GetClaimsAsync(role);
+
+            var enumName = ((int)person.IdUserType).GetEnumDescription<UserTypeEnum>();
+            var role = await _roleManager.FindByNameAsync(enumName);
+            var claim = await _roleManager.GetClaimsAsync(role);
 
             var claims = new List<Claim>
             {
-                /*new Claim(JwtRegisteredClaimNames.UniqueName, person.Name),
+                new Claim(JwtRegisteredClaimNames.UniqueName, person.name),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new Claim("IdUser", person.IdUser.ToString())*/
+                new Claim("IdUser", person.id.ToString()),
+                new Claim(ClaimTypes.Role,enumName)
             };
 
-            //claims.AddRange(claim);
+            claims.AddRange(claim);
 
             var key = new SymmetricSecurityKey(
                 Encoding.UTF8.GetBytes(_configuration["Jwt:key"]));

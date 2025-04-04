@@ -11,6 +11,11 @@ namespace Backend.Erp.Skeleton.Infrastructure.Mappings
             builder.HasKey(x => x.id);
             builder.Property(x => x.id).ValueGeneratedOnAdd();
 
+            builder.Property(x => x.cpf).IsRequired().HasMaxLength(11);
+            builder.Property(x => x.idUser).IsRequired();
+            builder.Property(x => x.IdUserType).IsRequired();
+            builder.Property(x => x.name).IsRequired().HasMaxLength(100);
+
             builder.HasIndex(x => x.cpf).IsUnique();
 
             builder.HasOne(x => x.company)
