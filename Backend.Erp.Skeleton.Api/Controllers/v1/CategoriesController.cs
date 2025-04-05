@@ -37,5 +37,23 @@ namespace Backend.Erp.Skeleton.Api.Controllers.v1
             var result = await Mediator.Send(sendRequest);
             return Ok(result);
         }
+
+        [Authorize(Roles = $"{Role.Company}")]
+        [HttpPatch]
+        public async Task<ActionResult> UpdateCategoryCommand([FromQuery] UpdateCategoryQuery query, [FromBody] UpdateCategoryRequest model)
+        {
+            var sendRequest = new UpdateCategoryCommand(User.GetUser(), query, model);
+            var result = await Mediator.Send(sendRequest);
+            return Ok(result);
+        }
+
+        [Authorize(Roles = $"{Role.Company}")]
+        [HttpDelete]
+        public async Task<ActionResult> DeleteCategoryCommand([FromQuery] DeleteCategoryQuery query)
+        {
+            var sendRequest = new DeleteCategoryCommand(User.GetUser(), query);
+            var result = await Mediator.Send(sendRequest);
+            return Ok(result);
+        }
     }
 }

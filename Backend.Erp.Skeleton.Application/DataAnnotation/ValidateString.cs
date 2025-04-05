@@ -15,10 +15,10 @@ namespace Backend.Erp.Skeleton.Application.DataAnnotation
         {
             if (value is null)
             {
-                if (_isRequired)
-                    return new ValidationResult(NotNullMessage(validationContext.DisplayName));
+                if (!_isRequired)
+                    return ValidationResult.Success;
 
-                return ValidationResult.Success;
+                return new ValidationResult(NotNullMessage(validationContext.DisplayName));
             }
 
             var stringValue = value.ToString();

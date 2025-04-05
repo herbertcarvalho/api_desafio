@@ -2,7 +2,7 @@
 
 namespace Backend.Erp.Skeleton.Application.DTOs.Response.Category
 {
-    public class GetCategoriesFilteredResponse : BaseId
+    public class GetCategoriesFilteredResponse : BaseIdResponse
     {
         public string Name { get; set; }
 

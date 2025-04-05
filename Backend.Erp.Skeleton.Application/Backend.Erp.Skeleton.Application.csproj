@@ -51,7 +51,6 @@
     <ProjectReference Include="..\Backend.Erp.Skeleton.Domain\Backend.Erp.Skeleton.Domain.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Commands\Products\" />
     <Folder Include="Services\" />
   </ItemGroup>
 </Project>
