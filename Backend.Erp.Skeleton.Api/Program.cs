@@ -41,6 +41,7 @@ builder.WebHost.UseUrls(hostUrl).ConfigureServices((context, services) =>
     builder.Services.AddEssentials();
     builder.Services.AddCors();
     builder.Services.AddRefit(configuration);
+    builder.Services.AddAmazonS3(configuration);
 });
 
 var app = builder.Build();

@@ -1,4 +1,6 @@
-﻿using Backend.Erp.Skeleton.Application.Behaviors;
+﻿using Amazon.Runtime;
+using Amazon.S3;
+using Backend.Erp.Skeleton.Application.Behaviors;
 using Backend.Erp.Skeleton.Application.Helpers;
 using Backend.Erp.Skeleton.Application.Helpers.Interfaces;
 using Backend.Erp.Skeleton.Application.Services;
@@ -31,7 +33,6 @@ namespace Backend.Erp.Skeleton.Application.DependencyInjection
 
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
-            services.AddScoped<IAws3Services, Aws3Services>();
             return services;
         }
 
@@ -43,6 +44,18 @@ namespace Backend.Erp.Skeleton.Application.DependencyInjection
 
         public static IServiceCollection AddRefit(this IServiceCollection services, IConfiguration configuration)
         {
+            return services;
+        }
+
+        public static IServiceCollection AddAmazonS3(this IServiceCollection services, IConfiguration configuration)
+        {
+            var awsOptions = configuration.GetAWSOptions();
+            awsOptions.Credentials = new BasicAWSCredentials(configuration.GetSection("AWS")["AWSAccessKeyId"], configuration.GetSection("AWS")["AWSSecretKey"]);
+            services.AddDefaultAWSOptions(awsOptions);
+            services.AddAWSService<IAmazonS3>();
+
+            services.AddScoped<IAws3Services, Aws3Services>();
+
             return services;
         }
     }

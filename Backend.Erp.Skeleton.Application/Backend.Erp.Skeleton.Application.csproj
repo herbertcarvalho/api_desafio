@@ -29,6 +29,7 @@
     <None Remove="Queries\**" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="AWSSDK.Extensions.NETCore.Setup" Version="3.7.400" />
     <PackageReference Include="AWSSDK.S3" Version="3.7.416.5" />
     <PackageReference Include="Azure.Communication.Email" Version="1.0.1" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
