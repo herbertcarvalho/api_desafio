@@ -37,5 +37,23 @@ namespace Backend.Erp.Skeleton.Api.Controllers.v1
             var result = await Mediator.Send(sendRequest);
             return Ok(result);
         }
+
+        [Authorize(Roles = $"{Role.Company}")]
+        [HttpDelete]
+        public async Task<ActionResult> DeleteProductCommand([FromQuery] DeleteProductQuery query)
+        {
+            var sendRequest = new DeleteProductCommand(User.GetUser(), query);
+            var result = await Mediator.Send(sendRequest);
+            return Ok(result);
+        }
+
+        [Authorize(Roles = $"{Role.Company}")]
+        [HttpPatch]
+        public async Task<ActionResult> UpdateProductCommand([FromQuery] UpdateProductQuery query, [FromBody] UpdateProductRequest request)
+        {
+            var sendRequest = new UpdateProductCommand(User.GetUser(), query, request);
+            var result = await Mediator.Send(sendRequest);
+            return Ok(result);
+        }
     }
 }

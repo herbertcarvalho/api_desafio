@@ -6,13 +6,10 @@ using static Backend.Erp.Skeleton.Application.Validators.Product.ProductsConstan
 
 namespace Backend.Erp.Skeleton.Application.Validators.Product
 {
-    public class CreateProductRequestValidator : AbstractValidator<CreateProductRequest>
+    public class UpdateProductRequestValidator : AbstractValidator<UpdateProductRequest>
     {
-        public CreateProductRequestValidator()
+        public UpdateProductRequestValidator()
         {
-            RuleFor(x => x.IdCategory)
-                .Must(x => x.GreaterThanZero())
-                .WithMessage(GreaterThanZeroMessage(idCategory));
 
             RuleFor(x => x.Price)
                 .Must(x => x.GreaterThanZero())
@@ -25,10 +22,6 @@ namespace Backend.Erp.Skeleton.Application.Validators.Product
                 .WithMessage(NotNullMessage(name))
                 .Must(x => x.IsValidStringWithLength(100, alphaNumeric: true))
                 .WithMessage(StringLesserThanInput(name, 100, alphaNumeric: true));
-
-            RuleFor(x => x.Img)
-                .Must(x => x is null || x.IsBase64StringAndLengthValid())
-                .WithMessage(Base64Invalid());
         }
     }
 }

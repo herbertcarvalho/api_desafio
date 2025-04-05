@@ -18,23 +18,29 @@ namespace Backend.Erp.Skeleton.Application.Commands.Product
         private readonly IProductsRepository _productsRepository;
         private readonly ICompanyRepository _companyRepository;
         private readonly ICategoriesRepository _categoriesRepository;
+        private readonly IPersonsRepository _personsRepository;
         private readonly IUnitOfWork _unitOfWork;
 
         public CreateProductCommandHandler(
             IProductsRepository productsRepository,
             IUnitOfWork unitOfWork,
             ICompanyRepository companyRepository,
-            ICategoriesRepository categoriesRepository)
+            ICategoriesRepository categoriesRepository,
+            IPersonsRepository personsRepository)
         {
             _productsRepository = productsRepository;
             _unitOfWork = unitOfWork;
             _companyRepository = companyRepository;
             _categoriesRepository = categoriesRepository;
+            _personsRepository = personsRepository;
         }
 
         public async Task<Result<string>> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
-            if (!await _companyRepository.Any(request.Request.IdCompany))
+            var user = await _personsRepository.GetByIdAsync(request.UserClaim.IdUser)
+                ?? throw new ApiException("Não foi possível encontrar o usuário.");
+
+            if (!await _companyRepository.Any(user.IdCompany.Value))
                 throw new ApiException("A empresa selecionada não existe.");
 
             if (!await _categoriesRepository.Any(request.Request.IdCategory))
@@ -49,7 +55,7 @@ namespace Backend.Erp.Skeleton.Application.Commands.Product
 
             var addProduct = new Products()
             {
-                IdCompany = request.Request.IdCompany,
+                IdCompany = user.IdCompany.Value,
                 IdCategory = request.Request.IdCategory,
                 Status = request.Request.Status,
                 Image = identifier,

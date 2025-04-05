@@ -17,9 +17,9 @@ namespace Backend.Erp.Skeleton.Application.DTOs.Response.Product
         {
             Id = products.Id;
             Name = products.Name;
-            IdCompany = products.Company.Id;
+            IdCompany = products.IdCompany;
             NameCompany = products.Company.Name;
-            IdCategory = products.Category.Id;
+            IdCategory = products.IdCategory;
             NameCategory = products.Category.Name;
             Price = products.Price;
             Active = products.Status;
