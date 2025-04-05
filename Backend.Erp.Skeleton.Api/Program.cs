@@ -34,7 +34,7 @@ builder.WebHost.UseUrls(hostUrl).ConfigureServices((context, services) =>
     builder.Services.AddIdentity(builder.Configuration);
     builder.Services.AddMongoDb();
     builder.Services.AddRepositories();
-    builder.Services.AddQueryServices();
+    builder.Services.AddServices();
     builder.Services.AddHelperServices();
     builder.Services.AddControllers();
     builder.Services.AddHealthChecks().AddDbContextCheck<ApplicationDbContext>();

@@ -1,6 +1,8 @@
 ﻿using Backend.Erp.Skeleton.Application.Behaviors;
 using Backend.Erp.Skeleton.Application.Helpers;
 using Backend.Erp.Skeleton.Application.Helpers.Interfaces;
+using Backend.Erp.Skeleton.Application.Services;
+using Backend.Erp.Skeleton.Application.Services.Interfaces;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using MediatR;
@@ -27,8 +29,9 @@ namespace Backend.Erp.Skeleton.Application.DependencyInjection
             return services;
         }
 
-        public static IServiceCollection AddQueryServices(this IServiceCollection services)
+        public static IServiceCollection AddServices(this IServiceCollection services)
         {
+            services.AddScoped<IAws3Services, Aws3Services>();
             return services;
         }
 
