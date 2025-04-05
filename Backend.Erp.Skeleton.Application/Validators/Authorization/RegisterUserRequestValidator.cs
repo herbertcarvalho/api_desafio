@@ -57,7 +57,7 @@ namespace Backend.Erp.Skeleton.Application.Validators.Authorization
                 .NotNull()
                 .WithMessage(NotNullMessage(companyName))
                 .Must(x => x.IsValidStringWithLength(100))
-                .WithMessage(InvalidMessage(companyName))
+                .WithMessage(StringLesserThanInput(companyName, 100))
                 .When(x => x.cnpj is not null);
 
             RuleFor(x => x.name)

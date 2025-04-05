@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net.Mail;
 using System.Text.RegularExpressions;
 
@@ -143,5 +145,22 @@ namespace Backend.Erp.Skeleton.Application.Extensions
         /// <returns>Retorna verdadeiro se o CNPJ for válido, caso contrário, retorna falso.</returns>
         public static bool IsValidStringWithLength(this string input, int length)
             => !input.IsNullOrEmpty() && input.Length <= length;
+
+        /// <summary>
+        /// Valida se as string's fornecidas são iguais.
+        /// </summary>
+        /// <param name="input">Primeira string</param>
+        /// <param name="value">Segunda string</param>
+        /// <returns>Retorna verdadeiro se iguais .</returns>
+        public static bool EqualsCase(this string input, string value)
+            => string.Equals(input, value, StringComparison.OrdinalIgnoreCase);
+
+        /// <summary>
+        /// Valida se a string fornecido é válida 
+        /// </summary>
+        /// <param name="input">String</param>
+        /// <returns>Retorna verdadeiro se iguais .</returns>
+        public static bool IsValidAlphanumeric(this string input)
+            => !string.IsNullOrEmpty(input) && input.All(char.IsLetterOrDigit);
     }
 }

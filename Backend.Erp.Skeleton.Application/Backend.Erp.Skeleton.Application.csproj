@@ -15,10 +15,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="DTOs\Authorization\**" />
     <Compile Remove="Interfaces\**" />
     <Compile Remove="Queries\**" />
+    <EmbeddedResource Remove="DTOs\Authorization\**" />
     <EmbeddedResource Remove="Interfaces\**" />
     <EmbeddedResource Remove="Queries\**" />
+    <None Remove="DTOs\Authorization\**" />
     <None Remove="Interfaces\**" />
     <None Remove="Queries\**" />
   </ItemGroup>
@@ -45,7 +48,7 @@
     <ProjectReference Include="..\Backend.Erp.Skeleton.Domain\Backend.Erp.Skeleton.Domain.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DTOs\Authorization\" />
+    <Folder Include="Commands\Products\" />
     <Folder Include="DTOs\Response\base\" />
     <Folder Include="Services\" />
   </ItemGroup>

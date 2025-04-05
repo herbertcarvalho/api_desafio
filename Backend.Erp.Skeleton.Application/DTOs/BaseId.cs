@@ -1,6 +1,6 @@
 ﻿namespace Backend.Erp.Skeleton.Application.DTOs
 {
-    public class Base
+    public class BaseId
     {
         public int Id { get; set; }
     }

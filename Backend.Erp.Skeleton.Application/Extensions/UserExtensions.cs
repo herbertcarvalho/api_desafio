@@ -1,14 +1,17 @@
-﻿using System.Linq;
+﻿using Backend.Erp.Skeleton.Application.DTOs;
 using System.Security.Claims;
 
 namespace Backend.Erp.Skeleton.Application.Extensions
 {
     public static class UserExtensions
     {
-        public static int GetIdUser(this ClaimsPrincipal user)
+        public static UserClaim GetUser(this ClaimsPrincipal user)
         {
-            var userId = int.Parse(user.Claims.FirstOrDefault(x => x.Type == "IdUser")?.Value);
-            return userId;
+
+
+            var userClaim = new UserClaim();
+
+            return userClaim;
         }
     }
 }
