@@ -1,5 +1,5 @@
 ﻿using Backend.Erp.Skeleton.Application.Exceptions;
-using Backend.Erp.Skeleton.Application.Extensions;
+using Backend.Erp.Skeleton.Domain.Extensions;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System;

@@ -8,19 +8,19 @@ namespace Backend.Erp.Skeleton.Infrastructure.Mappings
     {
         public void Configure(EntityTypeBuilder<Persons> builder)
         {
-            builder.HasKey(x => x.id);
-            builder.Property(x => x.id).ValueGeneratedOnAdd();
+            builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id).ValueGeneratedOnAdd();
 
-            builder.Property(x => x.cpf).IsRequired().HasMaxLength(11);
-            builder.Property(x => x.idUser).IsRequired();
+            builder.Property(x => x.Cpf).IsRequired().HasMaxLength(11);
+            builder.Property(x => x.IdUser).IsRequired();
             builder.Property(x => x.IdUserType).IsRequired();
-            builder.Property(x => x.name).IsRequired().HasMaxLength(100);
+            builder.Property(x => x.Name).IsRequired().HasMaxLength(100);
 
-            builder.HasIndex(x => x.cpf).IsUnique();
+            builder.HasIndex(x => x.Cpf).IsUnique();
 
-            builder.HasOne(x => x.company)
+            builder.HasOne(x => x.Company)
                    .WithMany(x => x.Persons)
-                   .HasForeignKey(x => x.idCompany)
+                   .HasForeignKey(x => x.IdCompany)
                    .IsRequired(false);
         }
     }

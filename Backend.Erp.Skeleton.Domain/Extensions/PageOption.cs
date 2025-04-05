@@ -1,8 +1,7 @@
-﻿using Backend.Erp.Skeleton.Application.DataAnnotation;
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Backend.Erp.Skeleton.Application.DTOs.Request.BaseRequest
+namespace Backend.Erp.Skeleton.Domain.Extensions
 {
     public class PageOption
     {

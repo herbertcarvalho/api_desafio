@@ -36,10 +36,10 @@ namespace Backend.Erp.Skeleton.Application.Helpers
 
             var claims = new List<Claim>
             {
-                new Claim(JwtRegisteredClaimNames.UniqueName, person.name),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new Claim("IdUser", person.id.ToString()),
-                new Claim(ClaimTypes.Role,enumName)
+                new (JwtRegisteredClaimNames.UniqueName, person.Name),
+                new (JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new ("IdUser", person.Id.ToString()),
+                new (ClaimTypes.Role,enumName)
             };
 
             claims.AddRange(claim);

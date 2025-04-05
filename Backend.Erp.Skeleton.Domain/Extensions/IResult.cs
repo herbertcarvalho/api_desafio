@@ -1,4 +1,4 @@
-﻿namespace Backend.Erp.Skeleton.Application.Extensions
+﻿namespace Backend.Erp.Skeleton.Domain.Extensions
 {
     public interface IResult
     {

@@ -7,8 +7,8 @@ namespace Backend.Erp.Skeleton.Application.Helpers
         public const string EntryObjectCantBeNull = "O objeto de entrada não pode ser nulo.";
         public const string EntryObjectCantBeEmpty = "O objeto de entrada não pode ser vazio.";
 
-        public static string InvalidMessage(string value)
-            => $"O {value} deve ser válido.";
+        public static string InvalidMessage(string value, bool alphaNumeric = false)
+            => $"O {value} deve ser válido {(alphaNumeric ? "e alfanumérico." : ".")}";
 
         public static string NotEmptyMessage(string value)
             => $"Campo {value} não pode ser vazio.";
@@ -45,7 +45,7 @@ namespace Backend.Erp.Skeleton.Application.Helpers
         public static string EnumIsNotDefined<T>(int value)
             => $"O valor {value} não é válido para o enumerador {typeof(T).Name}.";
 
-        public static string StringLesserThanInput(string value, int input)
-            => $"O {value} deve ter tamanho menor que {input.ToString()} caracteres.";
+        public static string StringLesserThanInput(string value, int input, bool alphaNumeric = false)
+            => $"O {value} deve ter tamanho menor que {input.ToString()} caracteres {(alphaNumeric ? "e ser alfanumérico." : ".")}";
     }
 }

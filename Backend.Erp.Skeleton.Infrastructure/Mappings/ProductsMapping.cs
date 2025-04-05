@@ -8,25 +8,25 @@ namespace Backend.Erp.Skeleton.Infrastructure.Mappings
     {
         public void Configure(EntityTypeBuilder<Products> builder)
         {
-            builder.HasKey(x => x.id);
-            builder.Property(x => x.id).ValueGeneratedOnAdd();
+            builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id).ValueGeneratedOnAdd();
 
-            builder.Property(x => x.idCompany).IsRequired();
-            builder.Property(x => x.idCategory).IsRequired();
-            builder.Property(x => x.status).IsRequired();
-            builder.Property(x => x.name).IsRequired().HasMaxLength(100);
-            builder.Property(x => x.price).IsRequired();
-            builder.Property(x => x.image).IsRequired();
+            builder.Property(x => x.IdCompany).IsRequired();
+            builder.Property(x => x.IdCategory).IsRequired();
+            builder.Property(x => x.Status).IsRequired();
+            builder.Property(x => x.Name).IsRequired().HasMaxLength(100);
+            builder.Property(x => x.Price).IsRequired();
+            builder.Property(x => x.Image).IsRequired();
 
-            builder.HasIndex(x => x.name).IsUnique();
+            builder.HasIndex(x => x.Name).IsUnique();
 
             builder.HasOne(x => x.Company)
                    .WithMany(x => x.Products)
-                   .HasForeignKey(x => x.idCompany);
+                   .HasForeignKey(x => x.IdCompany);
 
             builder.HasOne(x => x.Category)
                    .WithMany(x => x.Products)
-                   .HasForeignKey(x => x.idCompany);
+                   .HasForeignKey(x => x.IdCompany);
         }
     }
 }

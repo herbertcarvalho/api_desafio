@@ -11,7 +11,7 @@ namespace Backend.Erp.Skeleton.Application.Validators.Authorization
     {
         public LoginUserRequestValidator()
         {
-            RuleFor(x => x.email)
+            RuleFor(x => x.Email)
                 .NotEmpty()
                 .WithMessage(NotEmptyMessage(email))
                 .NotNull()
@@ -19,24 +19,24 @@ namespace Backend.Erp.Skeleton.Application.Validators.Authorization
                 .Must(x => x.IsEmail())
                 .WithMessage(InvalidMessage(email));
 
-            RuleFor(x => x.password)
+            RuleFor(x => x.Password)
                 .NotEmpty()
                 .WithMessage("A senha não pode ser vazia.");
 
-            RuleFor(x => x.password)
+            RuleFor(x => x.Password)
                 .MinimumLength(6)
                 .WithMessage("A senha deve conter mais de 6 caracteres.");
 
-            RuleFor(x => x.password)
+            RuleFor(x => x.Password)
                 .Matches(new Regex(@"[A-Z]")).WithMessage("É necessário inserir uma letra maiúscula.");
 
-            RuleFor(x => x.password)
+            RuleFor(x => x.Password)
                 .Matches(new Regex(@"[0-9]")).WithMessage("É necessário inserir um número.");
 
-            RuleFor(x => x.password)
+            RuleFor(x => x.Password)
                 .Matches(new Regex(@"[a-zA-Z]")).WithMessage("É necessário inserir uma letra.");
 
-            RuleFor(x => x.password)
+            RuleFor(x => x.Password)
                 .Matches(new Regex(@"[!@#$%^&*(),.?""':{}|<>]")).WithMessage("É necessário inserir um símbolo.");
 
         }

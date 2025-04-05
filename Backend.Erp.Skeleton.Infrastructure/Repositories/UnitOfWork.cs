@@ -45,25 +45,5 @@ namespace Backend.Erp.Skeleton.Infrastructure.Repositories
             _transaction = await _dbContext.Database.BeginTransactionAsync();
             return _transaction;
         }
-
-        public async Task Commit()
-        {
-            if (_transaction is null)
-                return;
-
-            await _transaction.CommitAsync();
-            _transaction.Dispose();
-            _transaction = null;
-        }
-
-        public async Task RollBackAsync()
-        {
-            if (_transaction is null)
-                return;
-
-            await _transaction.RollbackAsync();
-            _transaction.Dispose();
-            _transaction = null;
-        }
     }
 }

@@ -16,12 +16,15 @@
 
   <ItemGroup>
     <Compile Remove="DTOs\Authorization\**" />
+    <Compile Remove="DTOs\Response\base\**" />
     <Compile Remove="Interfaces\**" />
     <Compile Remove="Queries\**" />
     <EmbeddedResource Remove="DTOs\Authorization\**" />
+    <EmbeddedResource Remove="DTOs\Response\base\**" />
     <EmbeddedResource Remove="Interfaces\**" />
     <EmbeddedResource Remove="Queries\**" />
     <None Remove="DTOs\Authorization\**" />
+    <None Remove="DTOs\Response\base\**" />
     <None Remove="Interfaces\**" />
     <None Remove="Queries\**" />
   </ItemGroup>
@@ -49,7 +52,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands\Products\" />
-    <Folder Include="DTOs\Response\base\" />
     <Folder Include="Services\" />
   </ItemGroup>
 </Project>

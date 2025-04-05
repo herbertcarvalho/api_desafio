@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Backend.Erp.Skeleton.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250404225958_Initial")]
+    [Migration("20250405141017_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -30,70 +30,70 @@ namespace Backend.Erp.Skeleton.Infrastructure.Migrations
 
             modelBuilder.Entity("Backend.Erp.Skeleton.Domain.Entities.Categories", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("createdAt")
+                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<int>("idCreatedBy")
+                    b.Property<int>("IdCreatedBy")
                         .HasColumnType("integer");
 
-                    b.Property<int>("idLastModifiedBy")
+                    b.Property<int>("IdLastModifiedBy")
                         .HasColumnType("integer");
 
-                    b.Property<string>("name")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
 
-                    b.Property<DateTime?>("updatedAt")
+                    b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("Backend.Erp.Skeleton.Domain.Entities.Company", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("cnpj")
+                    b.Property<string>("Cnpj")
                         .IsRequired()
                         .HasMaxLength(14)
                         .HasColumnType("character varying(14)");
 
-                    b.Property<DateTime>("createdAt")
+                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<int>("idCreatedBy")
+                    b.Property<int>("IdCreatedBy")
                         .HasColumnType("integer");
 
-                    b.Property<int>("idLastModifiedBy")
+                    b.Property<int>("IdLastModifiedBy")
                         .HasColumnType("integer");
 
-                    b.Property<string>("image")
+                    b.Property<string>("Image")
                         .HasColumnType("text");
 
-                    b.Property<string>("name")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
 
-                    b.Property<DateTime?>("updatedAt")
+                    b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
-                    b.HasIndex("cnpj")
+                    b.HasIndex("Cnpj")
                         .IsUnique();
 
                     b.ToTable("Company");
@@ -101,99 +101,99 @@ namespace Backend.Erp.Skeleton.Infrastructure.Migrations
 
             modelBuilder.Entity("Backend.Erp.Skeleton.Domain.Entities.Persons", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("IdUserType")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("cpf")
+                    b.Property<string>("Cpf")
                         .IsRequired()
                         .HasMaxLength(11)
                         .HasColumnType("character varying(11)");
 
-                    b.Property<DateTime>("createdAt")
+                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<int?>("idCompany")
+                    b.Property<int?>("IdCompany")
                         .HasColumnType("integer");
 
-                    b.Property<int>("idCreatedBy")
+                    b.Property<int>("IdCreatedBy")
                         .HasColumnType("integer");
 
-                    b.Property<int>("idLastModifiedBy")
+                    b.Property<int>("IdLastModifiedBy")
                         .HasColumnType("integer");
 
-                    b.Property<int>("idUser")
+                    b.Property<int>("IdUser")
                         .HasColumnType("integer");
 
-                    b.Property<string>("name")
+                    b.Property<int>("IdUserType")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
 
-                    b.Property<DateTime?>("updatedAt")
+                    b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
-                    b.HasIndex("cpf")
+                    b.HasIndex("Cpf")
                         .IsUnique();
 
-                    b.HasIndex("idCompany");
+                    b.HasIndex("IdCompany");
 
                     b.ToTable("Persons");
                 });
 
             modelBuilder.Entity("Backend.Erp.Skeleton.Domain.Entities.Products", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("createdAt")
+                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<int>("idCategory")
+                    b.Property<int>("IdCategory")
                         .HasColumnType("integer");
 
-                    b.Property<int>("idCompany")
+                    b.Property<int>("IdCompany")
                         .HasColumnType("integer");
 
-                    b.Property<int>("idCreatedBy")
+                    b.Property<int>("IdCreatedBy")
                         .HasColumnType("integer");
 
-                    b.Property<int>("idLastModifiedBy")
+                    b.Property<int>("IdLastModifiedBy")
                         .HasColumnType("integer");
 
-                    b.Property<string>("image")
+                    b.Property<string>("Image")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("name")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
 
-                    b.Property<decimal>("price")
+                    b.Property<decimal>("Price")
                         .HasColumnType("numeric");
 
-                    b.Property<bool>("status")
+                    b.Property<bool>("Status")
                         .HasColumnType("boolean");
 
-                    b.Property<DateTime?>("updatedAt")
+                    b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
-                    b.HasIndex("idCompany");
+                    b.HasIndex("IdCompany");
 
-                    b.HasIndex("name")
+                    b.HasIndex("Name")
                         .IsUnique();
 
                     b.ToTable("Products");
@@ -404,24 +404,24 @@ namespace Backend.Erp.Skeleton.Infrastructure.Migrations
 
             modelBuilder.Entity("Backend.Erp.Skeleton.Domain.Entities.Persons", b =>
                 {
-                    b.HasOne("Backend.Erp.Skeleton.Domain.Entities.Company", "company")
+                    b.HasOne("Backend.Erp.Skeleton.Domain.Entities.Company", "Company")
                         .WithMany("Persons")
-                        .HasForeignKey("idCompany");
+                        .HasForeignKey("IdCompany");
 
-                    b.Navigation("company");
+                    b.Navigation("Company");
                 });
 
             modelBuilder.Entity("Backend.Erp.Skeleton.Domain.Entities.Products", b =>
                 {
                     b.HasOne("Backend.Erp.Skeleton.Domain.Entities.Categories", "Category")
                         .WithMany("Products")
-                        .HasForeignKey("idCompany")
+                        .HasForeignKey("IdCompany")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Backend.Erp.Skeleton.Domain.Entities.Company", "Company")
                         .WithMany("Products")
-                        .HasForeignKey("idCompany")
+                        .HasForeignKey("IdCompany")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

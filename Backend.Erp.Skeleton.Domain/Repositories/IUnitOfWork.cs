@@ -9,7 +9,5 @@ namespace Backend.Erp.Skeleton.Domain.Repositories
     {
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
         Task<IDbContextTransaction> BeginTransaction();
-        Task Commit();
-        Task RollBackAsync();
     }
 }

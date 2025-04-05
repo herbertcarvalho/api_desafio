@@ -8,14 +8,14 @@ namespace Backend.Erp.Skeleton.Infrastructure.Mappings
     {
         public void Configure(EntityTypeBuilder<Categories> builder)
         {
-            builder.HasKey(x => x.id);
-            builder.Property(x => x.id).ValueGeneratedOnAdd();
+            builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id).ValueGeneratedOnAdd();
 
-            builder.Property(x => x.name).IsRequired().HasMaxLength(100);
+            builder.Property(x => x.Name).IsRequired().HasMaxLength(100);
 
             builder.HasMany(x => x.Products)
                    .WithOne(x => x.Category)
-                   .HasForeignKey(x => x.idCategory);
+                   .HasForeignKey(x => x.IdCategory);
         }
     }
 }

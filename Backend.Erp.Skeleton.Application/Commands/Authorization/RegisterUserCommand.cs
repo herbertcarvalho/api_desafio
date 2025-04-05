@@ -5,6 +5,7 @@ using Backend.Erp.Skeleton.Application.Extensions;
 using Backend.Erp.Skeleton.Application.Helpers.Interfaces;
 using Backend.Erp.Skeleton.Domain.Entities;
 using Backend.Erp.Skeleton.Domain.Enums;
+using Backend.Erp.Skeleton.Domain.Extensions;
 using Backend.Erp.Skeleton.Domain.Repositories;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
@@ -46,35 +47,35 @@ namespace Backend.Erp.Skeleton.Application.Commands.Authorization
         {
             var user = new IdentityUser<int>
             {
-                UserName = request.Request.email,
-                Email = request.Request.email,
+                UserName = request.Request.Email,
+                Email = request.Request.Email,
                 EmailConfirmed = true,
             };
 
-            var identityEmail = await _userManager.FindByEmailAsync(request.Request.email);
+            var identityEmail = await _userManager.FindByEmailAsync(request.Request.Email);
             if (identityEmail is not null)
                 throw new ApiException("Esse email já foi cadastrado.");
 
-            var existsCpf = await _personsRepository.Any(request.Request.cpf);
+            var existsCpf = await _personsRepository.Any(request.Request.Cpf);
             if (existsCpf)
                 throw new ApiException("Esse cpf já foi cadastrado.");
 
-            var existsCnpj = await _companyRepository.Any(request.Request.cnpj);
+            var existsCnpj = await _companyRepository.Any(request.Request.Cnpj);
             if (existsCnpj)
                 throw new ApiException("Esse cnpj já foi cadastrado.");
 
-            var resultCreateUser = await _userManager.CreateAsync(user, request.Request.password);
+            var resultCreateUser = await _userManager.CreateAsync(user, request.Request.Password);
             if (!resultCreateUser.Succeeded)
                 throw new ApiException($"Não foi possível cadastrar o novo usuário. {string.Join(',', resultCreateUser.Errors.Select(x => x.Description))}");
 
-            identityEmail = await _userManager.FindByEmailAsync(request.Request.email);
+            identityEmail = await _userManager.FindByEmailAsync(request.Request.Email);
 
             var addNewPerson = new Persons()
             {
-                cpf = request.Request.cpf,
-                idUser = identityEmail.Id,
-                name = request.Request.name,
-                IdUserType = request.Request.cnpj is null ? (int)UserTypeEnum.Client : (int)UserTypeEnum.Company
+                Cpf = request.Request.Cpf,
+                IdUser = identityEmail.Id,
+                Name = request.Request.Name,
+                IdUserType = request.Request.Cnpj is null ? (int)UserTypeEnum.Client : (int)UserTypeEnum.Company
             };
 
             var result = await _userManager.AddToRoleAsync(user, addNewPerson.IdUserType.GetEnumDescription<UserTypeEnum>());
@@ -86,9 +87,8 @@ namespace Backend.Erp.Skeleton.Application.Commands.Authorization
 
             var addNewCompany = new Company()
             {
-                cnpj = request.Request.cnpj,
-                createdAt = DateTime.UtcNow,
-                name = request.Request.companyName
+                Cnpj = request.Request.Cnpj,
+                Name = request.Request.CompanyName
             };
 
             using (var transaction = await _unitOfWork.BeginTransaction())
@@ -98,18 +98,18 @@ namespace Backend.Erp.Skeleton.Application.Commands.Authorization
                     if (addNewPerson.IdUserType == (int)UserTypeEnum.Company)
                     {
                         await _companyRepository.AddAsync(addNewCompany);
-                        await _unitOfWork.SaveChangesAsync();
-                        addNewPerson.idCompany = addNewCompany.id;
+                        await _unitOfWork.SaveChangesAsync(default);
+                        addNewPerson.IdCompany = addNewCompany.Id;
                     }
 
                     await _personsRepository.AddAsync(addNewPerson);
-                    await _unitOfWork.SaveChangesAsync();
+                    await _unitOfWork.SaveChangesAsync(default);
 
-                    await transaction.CommitAsync();
+                    await transaction.CommitAsync(default);
                 }
                 catch (Exception)
                 {
-                    await transaction.RollbackAsync();
+                    await transaction.RollbackAsync(default);
                     throw new ApiException("Não foi possível processar a requisição.");
                 }
             }

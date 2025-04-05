@@ -17,12 +17,17 @@ namespace Backend.Erp.Skeleton.Application.DataAnnotation
             {
                 if (_isRequired)
                     return new ValidationResult(NotNullMessage(validationContext.DisplayName));
+
+                return ValidationResult.Success;
             }
 
             var stringValue = value.ToString();
 
-            if (!stringValue.IsValidAlphanumeric())
+            if (stringValue.IsNullOrEmpty())
                 return new ValidationResult(InvalidMessage(validationContext.DisplayName));
+
+            if (!stringValue.IsValidAlphanumeric())
+                return new ValidationResult(InvalidMessage(validationContext.DisplayName, alphaNumeric: true));
 
             return ValidationResult.Success;
         }

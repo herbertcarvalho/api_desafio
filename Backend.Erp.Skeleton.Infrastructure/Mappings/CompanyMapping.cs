@@ -8,15 +8,15 @@ namespace Backend.Erp.Skeleton.Infrastructure.Mappings
     {
         public void Configure(EntityTypeBuilder<Company> builder)
         {
-            builder.HasKey(x => x.id);
-            builder.Property(x => x.id).ValueGeneratedOnAdd();
+            builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id).ValueGeneratedOnAdd();
 
-            builder.Property(x => x.cnpj).IsRequired().HasMaxLength(14);
-            builder.Property(x => x.name).IsRequired().HasMaxLength(100);
-            builder.Property(x => x.image);
+            builder.Property(x => x.Cnpj).IsRequired().HasMaxLength(14);
+            builder.Property(x => x.Name).IsRequired().HasMaxLength(100);
+            builder.Property(x => x.Image);
 
 
-            builder.HasIndex(x => x.cnpj).IsUnique();
+            builder.HasIndex(x => x.Cnpj).IsUnique();
 
         }
     }

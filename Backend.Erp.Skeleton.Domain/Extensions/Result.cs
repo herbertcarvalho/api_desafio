@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Backend.Erp.Skeleton.Application.Extensions
+namespace Backend.Erp.Skeleton.Domain.Extensions
 {
     public class Result : IResult
     {

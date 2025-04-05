@@ -10,13 +10,13 @@ namespace Backend.Erp.Skeleton.Application.Validators.Category
     {
         public CreateCategoryRequestValidator()
         {
-            RuleFor(x => x.name)
+            RuleFor(x => x.Name)
                 .NotEmpty()
                 .WithMessage(NotEmptyMessage(name))
                 .NotNull()
                 .WithMessage(NotNullMessage(name))
-                .Must(x => x.IsValidStringWithLength(100))
-                .WithMessage(StringLesserThanInput(name, 100));
+                .Must(x => x.IsValidStringWithLength(100, alphaNumeric: true))
+                .WithMessage(StringLesserThanInput(name, 100, alphaNumeric: true));
         }
     }
 }

@@ -4,9 +4,9 @@ namespace Backend.Erp.Skeleton.Application.DTOs.Request.Authorization
 {
     public class RegisterUserRequest : LoginBaseRequest
     {
-        public string cpf { get; set; }
-        public string cnpj { get; set; }
-        public string companyName { get; set; }
-        public string name { get; set; }
+        public string Cpf { get; set; }
+        public string Cnpj { get; set; }
+        public string CompanyName { get; set; }
+        public string Name { get; set; }
     }
 }

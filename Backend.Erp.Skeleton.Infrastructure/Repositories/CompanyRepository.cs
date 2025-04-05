@@ -13,6 +13,6 @@ namespace Backend.Erp.Skeleton.Infrastructure.Repositories
         }
 
         public async Task<bool> Any(string cnpj)
-         => await Query().AnyAsync(x => x.cnpj == cnpj);
+         => await Query().AnyAsync(x => x.Cnpj == cnpj);
     }
 }

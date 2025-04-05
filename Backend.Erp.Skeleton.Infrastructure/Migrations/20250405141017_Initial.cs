@@ -1,6 +1,6 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
+using System;
 
 #nullable disable
 
@@ -57,36 +57,36 @@ namespace Backend.Erp.Skeleton.Infrastructure.Migrations
                 name: "Categories",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "integer", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
-                    idCreatedBy = table.Column<int>(type: "integer", nullable: false),
-                    createdAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    idLastModifiedBy = table.Column<int>(type: "integer", nullable: false),
-                    updatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
+                    Name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    IdCreatedBy = table.Column<int>(type: "integer", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    IdLastModifiedBy = table.Column<int>(type: "integer", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Categories", x => x.id);
+                    table.PrimaryKey("PK_Categories", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Company",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "integer", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    cnpj = table.Column<string>(type: "character varying(14)", maxLength: 14, nullable: false),
-                    name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
-                    image = table.Column<string>(type: "text", nullable: true),
-                    idCreatedBy = table.Column<int>(type: "integer", nullable: false),
-                    createdAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    idLastModifiedBy = table.Column<int>(type: "integer", nullable: false),
-                    updatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
+                    Cnpj = table.Column<string>(type: "character varying(14)", maxLength: 14, nullable: false),
+                    Name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    Image = table.Column<string>(type: "text", nullable: true),
+                    IdCreatedBy = table.Column<int>(type: "integer", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    IdLastModifiedBy = table.Column<int>(type: "integer", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Company", x => x.id);
+                    table.PrimaryKey("PK_Company", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -199,59 +199,59 @@ namespace Backend.Erp.Skeleton.Infrastructure.Migrations
                 name: "Persons",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "integer", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    idUser = table.Column<int>(type: "integer", nullable: false),
+                    IdUser = table.Column<int>(type: "integer", nullable: false),
                     IdUserType = table.Column<int>(type: "integer", nullable: false),
-                    idCompany = table.Column<int>(type: "integer", nullable: true),
-                    cpf = table.Column<string>(type: "character varying(11)", maxLength: 11, nullable: false),
-                    name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
-                    idCreatedBy = table.Column<int>(type: "integer", nullable: false),
-                    createdAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    idLastModifiedBy = table.Column<int>(type: "integer", nullable: false),
-                    updatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
+                    IdCompany = table.Column<int>(type: "integer", nullable: true),
+                    Cpf = table.Column<string>(type: "character varying(11)", maxLength: 11, nullable: false),
+                    Name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    IdCreatedBy = table.Column<int>(type: "integer", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    IdLastModifiedBy = table.Column<int>(type: "integer", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Persons", x => x.id);
+                    table.PrimaryKey("PK_Persons", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Persons_Company_idCompany",
-                        column: x => x.idCompany,
+                        name: "FK_Persons_Company_IdCompany",
+                        column: x => x.IdCompany,
                         principalTable: "Company",
-                        principalColumn: "id");
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
                 name: "Products",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "integer", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    idCompany = table.Column<int>(type: "integer", nullable: false),
-                    idCategory = table.Column<int>(type: "integer", nullable: false),
-                    status = table.Column<bool>(type: "boolean", nullable: false),
-                    name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
-                    image = table.Column<string>(type: "text", nullable: false),
-                    price = table.Column<decimal>(type: "numeric", nullable: false),
-                    idCreatedBy = table.Column<int>(type: "integer", nullable: false),
-                    createdAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    idLastModifiedBy = table.Column<int>(type: "integer", nullable: false),
-                    updatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
+                    IdCompany = table.Column<int>(type: "integer", nullable: false),
+                    IdCategory = table.Column<int>(type: "integer", nullable: false),
+                    Status = table.Column<bool>(type: "boolean", nullable: false),
+                    Name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    Image = table.Column<string>(type: "text", nullable: false),
+                    Price = table.Column<decimal>(type: "numeric", nullable: false),
+                    IdCreatedBy = table.Column<int>(type: "integer", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    IdLastModifiedBy = table.Column<int>(type: "integer", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Products", x => x.id);
+                    table.PrimaryKey("PK_Products", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Products_Categories_idCompany",
-                        column: x => x.idCompany,
+                        name: "FK_Products_Categories_IdCompany",
+                        column: x => x.IdCompany,
                         principalTable: "Categories",
-                        principalColumn: "id",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Products_Company_idCompany",
-                        column: x => x.idCompany,
+                        name: "FK_Products_Company_IdCompany",
+                        column: x => x.IdCompany,
                         principalTable: "Company",
-                        principalColumn: "id",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -293,31 +293,31 @@ namespace Backend.Erp.Skeleton.Infrastructure.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Company_cnpj",
+                name: "IX_Company_Cnpj",
                 table: "Company",
-                column: "cnpj",
+                column: "Cnpj",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Persons_cpf",
+                name: "IX_Persons_Cpf",
                 table: "Persons",
-                column: "cpf",
+                column: "Cpf",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Persons_idCompany",
+                name: "IX_Persons_IdCompany",
                 table: "Persons",
-                column: "idCompany");
+                column: "IdCompany");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_idCompany",
+                name: "IX_Products_IdCompany",
                 table: "Products",
-                column: "idCompany");
+                column: "IdCompany");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_name",
+                name: "IX_Products_Name",
                 table: "Products",
-                column: "name",
+                column: "Name",
                 unique: true);
         }
 

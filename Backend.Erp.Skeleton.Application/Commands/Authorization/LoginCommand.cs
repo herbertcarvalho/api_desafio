@@ -1,8 +1,8 @@
 ﻿using Backend.Erp.Skeleton.Application.DTOs.Request.Authorization;
 using Backend.Erp.Skeleton.Application.DTOs.Response.Authorization;
 using Backend.Erp.Skeleton.Application.Exceptions;
-using Backend.Erp.Skeleton.Application.Extensions;
 using Backend.Erp.Skeleton.Application.Helpers.Interfaces;
+using Backend.Erp.Skeleton.Domain.Extensions;
 using Backend.Erp.Skeleton.Domain.Repositories;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
@@ -34,8 +34,8 @@ namespace Backend.Erp.Skeleton.Application.Commands.Authorization
 
         public async Task<Result<UsuarioToken>> Handle(LoginUserCommand request, CancellationToken cancellationToken)
         {
-            var result = await _signInManager.PasswordSignInAsync(request.Request.email,
-                request.Request.password, isPersistent: false, lockoutOnFailure: true);
+            var result = await _signInManager.PasswordSignInAsync(request.Request.Email,
+                request.Request.Password, isPersistent: false, lockoutOnFailure: true);
 
             if (!result.Succeeded)
             {
@@ -48,11 +48,10 @@ namespace Backend.Erp.Skeleton.Application.Commands.Authorization
                 throw new ApiException($"Credenciais Inválidas.");
             }
 
-            var identityUser = await _userManager.FindByEmailAsync(request.Request.email);
+            var identityUser = await _userManager.FindByEmailAsync(request.Request.Email);
 
-            var person = await _personsRepository.Get(identityUser.Id);
-            if (person is null)
-                throw new ApiException("Usuário não identificado.");
+            var person = await _personsRepository.Get(identityUser.Id)
+                ?? throw new ApiException("Usuário não identificado.");
 
             var response = await _authHelper.GenerateToken(person);
 

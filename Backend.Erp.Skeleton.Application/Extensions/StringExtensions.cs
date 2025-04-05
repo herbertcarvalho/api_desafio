@@ -19,10 +19,10 @@ namespace Backend.Erp.Skeleton.Application.Extensions
         /// <returns>Uma mensagem de erro se a senha for inválida ou null se for válida.</returns>
         public static bool IsValidPassword(this string input)
         {
-            var uppercaseRegExp = new Regex(@"[A-Z]");
-            var numberRegExp = new Regex(@"[0-9]");
-            var letterRegExp = new Regex(@"[a-zA-Z]");
-            var symbolRegExp = new Regex(@"[!@#$%^&*(),.?""':{}|<>]");
+            var uppercaseRegExp = new GeneratedRegexAttribute(@"[A-Z]");
+            var numberRegExp = new GeneratedRegexAttribute(@"[0-9]");
+            var letterRegExp = new GeneratedRegexAttribute(@"[a-zA-Z]");
+            var symbolRegExp = new GeneratedRegexAttribute(@"[!@#$%^&*(),.?""':{}|<>]");
 
             var missingCriteria = new List<string>();
 
@@ -32,16 +32,16 @@ namespace Backend.Erp.Skeleton.Application.Extensions
             if (input.Length < 6)
                 return false;
 
-            if (!uppercaseRegExp.IsMatch(input))
+            if (!uppercaseRegExp.Match(input))
                 return false;
 
-            if (!numberRegExp.IsMatch(input))
+            if (!numberRegExp.Match(input))
                 return false;
 
-            if (!letterRegExp.IsMatch(input))
+            if (!letterRegExp.Match(input))
                 return false;
 
-            if (!symbolRegExp.IsMatch(input))
+            if (!symbolRegExp.Match(input))
                 return false;
 
             if (missingCriteria.Count > 0)
@@ -108,7 +108,7 @@ namespace Backend.Erp.Skeleton.Application.Extensions
                 return false;
 
             // Calcula o primeiro dígito verificador
-            int[] firstMultipliers = new int[] { 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
+            int[] firstMultipliers = [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
             int sum = 0;
             for (int i = 0; i < 12; i++)
             {
@@ -123,7 +123,7 @@ namespace Backend.Erp.Skeleton.Application.Extensions
                 return false;
 
             // Calcula o segundo dígito verificador
-            int[] secondMultipliers = new int[] { 6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
+            int[] secondMultipliers = [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
             sum = 0;
             for (int i = 0; i < 13; i++)
             {
@@ -140,11 +140,16 @@ namespace Backend.Erp.Skeleton.Application.Extensions
         /// <summary>
         /// Valida se a string fornecida possui tamanho máximo menor que o fornecido.
         /// </summary>
-        /// <param name="input">A string do CNPJ a ser validado.</param>
+        /// <param name="input">A string a ser validada.</param>
         /// <param name="length">tamanho máximo.</param>
         /// <returns>Retorna verdadeiro se o CNPJ for válido, caso contrário, retorna falso.</returns>
-        public static bool IsValidStringWithLength(this string input, int length)
-            => !input.IsNullOrEmpty() && input.Length <= length;
+        public static bool IsValidStringWithLength(this string input, int length, bool alphaNumeric = false)
+        {
+            if (alphaNumeric && !input.IsValidAlphanumeric())
+                return false;
+
+            return !input.IsNullOrEmpty() && input.Length <= length;
+        }
 
         /// <summary>
         /// Valida se as string's fornecidas são iguais.
@@ -161,6 +166,6 @@ namespace Backend.Erp.Skeleton.Application.Extensions
         /// <param name="input">String</param>
         /// <returns>Retorna verdadeiro se iguais .</returns>
         public static bool IsValidAlphanumeric(this string input)
-            => !string.IsNullOrEmpty(input) && input.All(char.IsLetterOrDigit);
+            => !string.IsNullOrEmpty(input) && input.All(c => char.IsLetterOrDigit(c) || c == ' ');
     }
 }

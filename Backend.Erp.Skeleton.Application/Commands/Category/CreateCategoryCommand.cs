@@ -1,8 +1,8 @@
 ﻿using Backend.Erp.Skeleton.Application.DTOs;
 using Backend.Erp.Skeleton.Application.DTOs.Request.Category;
 using Backend.Erp.Skeleton.Application.Exceptions;
-using Backend.Erp.Skeleton.Application.Extensions;
 using Backend.Erp.Skeleton.Domain.Entities;
+using Backend.Erp.Skeleton.Domain.Extensions;
 using Backend.Erp.Skeleton.Domain.Repositories;
 using MediatR;
 using System.Threading;
@@ -27,17 +27,17 @@ namespace Backend.Erp.Skeleton.Application.Commands.Category
 
         public async Task<Result<string>> Handle(CreateCategoryCommand request, CancellationToken cancellationToken)
         {
-            if (await _categoriesRepository.Any(request.Request.name))
+            if (await _categoriesRepository.Any(request.Request.Name))
                 throw new ApiException("Essa categoria já foi cadastrada.");
 
             var addCategory = new Categories()
             {
-                name = request.Request.name,
-                idCreatedBy = request.UserClaim.IdUser,
+                Name = request.Request.Name,
+                IdCreatedBy = request.UserClaim.IdUser,
             };
 
             await _categoriesRepository.AddAsync(addCategory);
-            await _unitOfWork.SaveChangesAsync();
+            await _unitOfWork.SaveChangesAsync(default);
 
             return Result<string>.Success(null, "Nova categoria cadastrada com sucesso");
         }
