@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Backend.Erp.Skeleton.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250405141017_Initial")]
+    [Migration("20250405182926_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -190,6 +190,8 @@ namespace Backend.Erp.Skeleton.Infrastructure.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("IdCategory");
 
                     b.HasIndex("IdCompany");
 
@@ -415,7 +417,7 @@ namespace Backend.Erp.Skeleton.Infrastructure.Migrations
                 {
                     b.HasOne("Backend.Erp.Skeleton.Domain.Entities.Categories", "Category")
                         .WithMany("Products")
-                        .HasForeignKey("IdCompany")
+                        .HasForeignKey("IdCategory")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

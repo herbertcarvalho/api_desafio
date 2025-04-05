@@ -188,6 +188,8 @@ namespace Backend.Erp.Skeleton.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("IdCategory");
+
                     b.HasIndex("IdCompany");
 
                     b.HasIndex("Name")
@@ -412,7 +414,7 @@ namespace Backend.Erp.Skeleton.Infrastructure.Migrations
                 {
                     b.HasOne("Backend.Erp.Skeleton.Domain.Entities.Categories", "Category")
                         .WithMany("Products")
-                        .HasForeignKey("IdCompany")
+                        .HasForeignKey("IdCategory")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
