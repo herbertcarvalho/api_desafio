@@ -54,15 +54,23 @@ using (var scope = app.Services.CreateScope())
 
     try
     {
+        var connectionString = Environment.GetEnvironmentVariable("CONNECTION_STRING_POSTGRES");
+        Console.WriteLine("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        Console.WriteLine(connectionString);
+
         logger.LogInformation("Application starting");
         var dbContext = services.GetRequiredService<ApplicationDbContext>();
         dbContext.Database.Migrate();
         logger.LogInformation("Database migration success");
+        Console.WriteLine("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        Console.WriteLine(connectionString);
 
     }
     catch (Exception ex)
     {
         logger.LogError("Error during database migration:" + ex.ToString());
+        Console.WriteLine("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        Console.WriteLine(ex.ToString());
     }
 
     if (app.Environment.IsDevelopment())

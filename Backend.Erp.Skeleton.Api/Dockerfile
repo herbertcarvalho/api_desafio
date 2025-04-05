@@ -6,7 +6,7 @@ WORKDIR /app
 EXPOSE 80
 
 ENV ASPNETCORE_URLS="http://+:80"
-ENV ASPNETCORE_ENVIRONMENT="Development"
+ENV ASPNETCORE_ENVIRONMENT="Docker"
 
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 ARG BUILD_CONFIGURATION=Release

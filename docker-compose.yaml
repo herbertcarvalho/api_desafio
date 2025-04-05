@@ -1,0 +1,53 @@
+services:
+  # MongoDB Service
+  mongo:
+    image: mongo
+    restart: always    
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    networks:
+      - my_network
+
+  # PostgreSQL Service
+  db:
+    image: postgres:latest
+    container_name: postgres_container
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: mydatabase
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: always
+    networks:
+      - my_network
+
+  # .NET API Service
+  api:
+    build:
+      context: .
+      dockerfile: ./Backend.Erp.Skeleton.Api/Dockerfile
+    container_name: dotnet_api
+    environment:
+      ASPNETCORE_ENVIRONMENT: Docker
+    ports:
+      - "5000:80"
+    depends_on:
+      - mongo
+      - db
+    restart: always
+    networks:
+      - my_network
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  my_network:
+    driver: bridge

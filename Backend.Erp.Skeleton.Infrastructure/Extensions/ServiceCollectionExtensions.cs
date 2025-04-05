@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
@@ -70,6 +71,8 @@ namespace Backend.Erp.Skeleton.Infrastructure.Extensions
         [ExcludeFromCodeCoverage]
         private static void AddDbContext(IServiceCollection services, IConfiguration configuration)
         {
+            var connectionString = Environment.GetEnvironmentVariable("CONNECTION_STRING_POSTGRES") ?? configuration.GetConnectionString("ApplicationConnection");
+
             services.AddDbContext<ApplicationDbContext>(
                  options => options.UseLazyLoadingProxies()
                     .EnableSensitiveDataLogging()

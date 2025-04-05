@@ -242,8 +242,8 @@ namespace Backend.Erp.Skeleton.Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_Products", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Products_Categories_IdCategory",
-                        column: x => x.IdCategory,
+                        name: "FK_Products_Categories_IdCompany",
+                        column: x => x.IdCompany,
                         principalTable: "Categories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -308,11 +308,6 @@ namespace Backend.Erp.Skeleton.Infrastructure.Migrations
                 name: "IX_Persons_IdCompany",
                 table: "Persons",
                 column: "IdCompany");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Products_IdCategory",
-                table: "Products",
-                column: "IdCategory");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Products_IdCompany",
