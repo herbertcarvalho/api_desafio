@@ -27,7 +27,8 @@ namespace Backend.Erp.Skeleton.Application.Commands.Category
             var result = await _categoriesRepository
                 .GetFiltered(request.Query.Name, new PageOption() { Page = request.Query.Page, PageSize = request.Query.PageSize });
 
-            return PaginatedResult<GetCategoriesFilteredResponse>.Success("Comando executado com sucesso.", result.Data.Select(x => new GetCategoriesFilteredResponse(x)).ToList(), result.TotalCount, result.Page, result.Data.Count);
+            return PaginatedResult<GetCategoriesFilteredResponse>
+                .Success("Comando executado com sucesso.", [.. result.Data.Select(x => new GetCategoriesFilteredResponse(x))], result.TotalCount, result.Page, result.Data.Count);
         }
     }
 }

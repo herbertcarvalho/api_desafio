@@ -167,5 +167,17 @@ namespace Backend.Erp.Skeleton.Application.Extensions
         /// <returns>Retorna verdadeiro se iguais .</returns>
         public static bool IsValidAlphanumeric(this string input)
             => !string.IsNullOrEmpty(input) && input.All(c => char.IsLetterOrDigit(c) || c == ' ');
+
+        /// <summary>
+        /// Valida se a string fornecido é um base64 com tamanho até 5mb
+        /// </summary>
+        /// <param name="input">String</param>
+        /// <returns>Retorna verdadeiro se iguais .</returns>
+        public static bool IsBase64StringAndLengthValid(this string input)
+        {
+            if (input.IsNullOrEmpty()) return false;
+            var isBase64 = Convert.TryFromBase64String(input, new Span<byte>(new byte[input.Length]), out int bytes);
+            return isBase64 && bytes <= 5 * 1024 * 1024;
+        }
     }
 }

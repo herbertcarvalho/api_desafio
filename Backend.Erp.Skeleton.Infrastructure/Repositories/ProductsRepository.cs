@@ -38,5 +38,11 @@ namespace Backend.Erp.Skeleton.Infrastructure.Repositories
 
             return await query.ToPaginatedList(pageOption.Page, pageOption.PageSize);
         }
+
+        public async Task<bool> AnyImage(string img)
+            => await Query().AnyAsync(x => x.Image == img);
+
+        public async Task<bool> Any(string name)
+            => await Query().AnyAsync(x => x.Name == name.Trim().ToLower());
     }
 }

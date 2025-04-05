@@ -47,5 +47,8 @@ namespace Backend.Erp.Skeleton.Application.Helpers
 
         public static string StringLesserThanInput(string value, int input, bool alphaNumeric = false)
             => $"O {value} deve ter tamanho menor que {input.ToString()} caracteres {(alphaNumeric ? "e ser alfanumérico." : ".")}";
+
+        public static string Base64Invalid()
+            => "Arquivo deve estar em formato Base 64 e menor que 5 mega bytes";
     }
 }

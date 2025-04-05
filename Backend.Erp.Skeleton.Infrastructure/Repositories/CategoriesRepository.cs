@@ -27,5 +27,8 @@ namespace Backend.Erp.Skeleton.Infrastructure.Repositories
 
             return await query.ToPaginatedList(pageOption.Page, pageOption.PageSize);
         }
+
+        public async Task<bool> Any(int id)
+            => await Query().AnyAsync(x => x.Id == id);
     }
 }

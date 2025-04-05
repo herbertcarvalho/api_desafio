@@ -1,7 +1,7 @@
 ﻿using Backend.Erp.Skeleton.Application.DataAnnotation;
 using Backend.Erp.Skeleton.Domain.Extensions;
 
-namespace Backend.Erp.Skeleton.Application.DTOs.Request.Products
+namespace Backend.Erp.Skeleton.Application.DTOs.Request.Product
 {
     public class GetProductsQuery : PageOption
     {

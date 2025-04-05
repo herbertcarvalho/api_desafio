@@ -1,5 +1,6 @@
 ﻿using Backend.Erp.Skeleton.Application.Commands.Product;
-using Backend.Erp.Skeleton.Application.DTOs.Request.Products;
+using Backend.Erp.Skeleton.Application.DTOs.Request.Product;
+using Backend.Erp.Skeleton.Application.Extensions;
 using Backend.Erp.Skeleton.Infrastructure.Roles;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -24,6 +25,15 @@ namespace Backend.Erp.Skeleton.Api.Controllers.v1
         public async Task<ActionResult> GetProductsFilteredCommand([FromQuery] GetProductsQuery query)
         {
             var sendRequest = new GetProductsFilteredCommand(query);
+            var result = await Mediator.Send(sendRequest);
+            return Ok(result);
+        }
+
+        [Authorize(Roles = $"{Role.Company}")]
+        [HttpPost]
+        public async Task<ActionResult> CreateProductCommand([FromBody] CreateProductRequest query)
+        {
+            var sendRequest = new CreateProductCommand(User.GetUser(), query);
             var result = await Mediator.Send(sendRequest);
             return Ok(result);
         }
