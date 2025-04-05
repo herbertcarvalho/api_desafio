@@ -32,7 +32,7 @@ namespace Backend.Erp.Skeleton.Application.Behaviors
 
             var jsonParametros = JsonSerializer.Serialize(request);
 
-            var parametros = RemoveFieldsByName(jsonParametros, ["password"]);
+            var parametros = RemoveFieldsByName(jsonParametros, ["Password"]);
 
             var logs = new Logs()
             {
