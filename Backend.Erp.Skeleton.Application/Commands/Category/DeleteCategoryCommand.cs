@@ -1,5 +1,4 @@
-﻿using Backend.Erp.Skeleton.Application.DTOs;
-using Backend.Erp.Skeleton.Application.DTOs.Request.Category;
+﻿using Backend.Erp.Skeleton.Application.DTOs.Request.Category;
 using Backend.Erp.Skeleton.Application.Exceptions;
 using Backend.Erp.Skeleton.Domain.Extensions;
 using Backend.Erp.Skeleton.Domain.Repositories;
@@ -9,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Backend.Erp.Skeleton.Application.Commands.Category
 {
-    public record DeleteCategoryCommand(UserClaim UserClaim, DeleteCategoryQuery Query) : IRequest<Result<string>>;
+    public record DeleteCategoryCommand(DeleteCategoryQuery Query) : IRequest<Result<string>>;
 
     public class DeleteCategoryCommandHandler : IRequestHandler<DeleteCategoryCommand, Result<string>>
     {

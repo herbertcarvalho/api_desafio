@@ -5,7 +5,7 @@ using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Backend.Erp.Skeleton.Application.Commands.Products
+namespace Backend.Erp.Skeleton.Application.Commands.Product
 {
     public record CreateProductCommand(UserClaim UserClaim, CreateCategoryRequest Request) : IRequest<Result<string>>;
 

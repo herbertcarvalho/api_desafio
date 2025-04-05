@@ -51,7 +51,7 @@ namespace Backend.Erp.Skeleton.Api.Controllers.v1
         [HttpDelete]
         public async Task<ActionResult> DeleteCategoryCommand([FromQuery] DeleteCategoryQuery query)
         {
-            var sendRequest = new DeleteCategoryCommand(User.GetUser(), query);
+            var sendRequest = new DeleteCategoryCommand(query);
             var result = await Mediator.Send(sendRequest);
             return Ok(result);
         }
