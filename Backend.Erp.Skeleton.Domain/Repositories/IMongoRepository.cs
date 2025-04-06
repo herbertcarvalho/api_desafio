@@ -1,4 +1,4 @@
-﻿using Backend.Erp.Skeleton.Domain.Auxiliares;
+﻿using Backend.Erp.Skeleton.Domain.Helper;
 using System.Threading.Tasks;
 
 namespace Backend.Erp.Skeleton.Domain.Repositories

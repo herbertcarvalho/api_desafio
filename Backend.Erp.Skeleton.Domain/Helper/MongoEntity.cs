@@ -2,7 +2,7 @@
 using MongoDB.Bson.Serialization.Attributes;
 using System;
 
-namespace Backend.Erp.Skeleton.Domain.Auxiliares
+namespace Backend.Erp.Skeleton.Domain.Helper
 {
     public interface IDocument
     {

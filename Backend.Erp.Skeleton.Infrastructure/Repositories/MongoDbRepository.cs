@@ -1,4 +1,4 @@
-﻿using Backend.Erp.Skeleton.Domain.Auxiliares;
+﻿using Backend.Erp.Skeleton.Domain.Helper;
 using Backend.Erp.Skeleton.Domain.Repositories;
 using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
