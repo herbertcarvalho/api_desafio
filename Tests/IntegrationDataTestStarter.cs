@@ -19,10 +19,9 @@ namespace Tests
 
         protected ICompanyRepository CompanyRepository =>
             _serviceProvider.GetRequiredService<ICompanyRepository>();
-
         protected IPersonsRepository PersonsRepository => _serviceProvider.GetRequiredService<IPersonsRepository>();
-
         protected ICategoriesRepository CategoriesRepository => _serviceProvider.GetRequiredService<ICategoriesRepository>();
+        protected IProductsRepository ProductsRepository => _serviceProvider.GetRequiredService<IProductsRepository>();
         #endregion
 
         public async Task ExecuteSeedDataTests(Tuple<List<int>, List<string>> report)
@@ -31,6 +30,7 @@ namespace Tests
             await new CompanyIntegrationDataTest(CompanyRepository, UnitOfWork).ExecuteTestsAsync(report);
             await new PersonsIntegrationDataTest(PersonsRepository, UnitOfWork).ExecuteTestsAsync(report);
             await new CategoriesIntegrationDataTest(CategoriesRepository, UnitOfWork).ExecuteTestsAsync(report);
+            await new ProductsIntegrationDataTest(ProductsRepository, UnitOfWork).ExecuteTestsAsync(report);
         }
     }
 }

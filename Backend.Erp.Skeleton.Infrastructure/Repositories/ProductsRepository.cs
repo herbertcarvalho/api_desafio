@@ -43,6 +43,6 @@ namespace Backend.Erp.Skeleton.Infrastructure.Repositories
             => await Query().AnyAsync(x => x.Image == img);
 
         public async Task<bool> Any(string name)
-            => await Query().AnyAsync(x => x.Name == name.Trim().ToLower());
+            => await Query().AnyAsync(x => x.Name.ToLower() == name.Trim().ToLower());
     }
 }
