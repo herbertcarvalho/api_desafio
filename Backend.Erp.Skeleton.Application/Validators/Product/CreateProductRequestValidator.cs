@@ -27,7 +27,7 @@ namespace Backend.Erp.Skeleton.Application.Validators.Product
                 .WithMessage(StringLesserThanInput(name, 100, alphaNumeric: true));
 
             RuleFor(x => x.Img)
-                .Must(x => x is null || x.IsBase64StringAndLengthValid())
+                .Must(x => x.IsBase64StringAndLengthValid())
                 .WithMessage(Base64Invalid());
         }
     }
