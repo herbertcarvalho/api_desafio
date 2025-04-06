@@ -66,7 +66,7 @@ namespace Backend.Erp.Skeleton.Application.Validators.Authorization
                 .NotNull()
                 .WithMessage(NotNullMessage(name))
                 .Must(x => x.IsValidStringWithLength(100))
-                .WithMessage(InvalidMessage(name));
+                .WithMessage(StringLesserThanInput(name, 100));
         }
     }
 }
