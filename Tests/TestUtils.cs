@@ -18,7 +18,7 @@ namespace Tests
                 Console.WriteLine("ERRO - REVISE O NOME DESSE TESTE");
                 tuple.Item1[0]++;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 AppendText(NameOfTest ?? func.MethodName());
                 Console.WriteLine($"Error   on test {NameOfTest ?? func.MethodName()}");
