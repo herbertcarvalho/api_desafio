@@ -10,8 +10,40 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  integration-tests:
+    runs-on: ubuntu-latest
 
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Build and Start Docker Services
+      run: docker-compose up -d
+
+    - name: Wait for services to be ready (e.g., Postgres or API)
+      run: |
+        echo "Waiting for services..."
+        sleep 30
+
+    - name: Set up .NET SDK
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '9.0.x'
+
+    - name: Restore
+      run: dotnet restore
+
+    - name: Build
+      run: dotnet build --no-restore
+
+    - name: Run Tests
+      run: dotnet test ./tests/YourTests.csproj
+
+    - name: Tear Down Docker
+      if: always()
+      run: docker-compose down
+
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -20,9 +52,12 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 9.0.x
+
     - name: Restore dependencies
       run: dotnet restore
+
     - name: Build
       run: dotnet build --no-restore
+      
     - name: Test
       run: dotnet test --no-build --verbosity normal
