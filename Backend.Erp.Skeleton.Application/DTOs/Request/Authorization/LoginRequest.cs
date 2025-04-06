@@ -2,7 +2,7 @@
 
 namespace Backend.Erp.Skeleton.Application.DTOs.Request.Authorization
 {
-    public class LoginUserRequest : LoginBaseRequest
+    public class LoginRequest : LoginBaseRequest
     {
     }
 }

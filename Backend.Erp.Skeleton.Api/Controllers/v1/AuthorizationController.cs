@@ -18,7 +18,7 @@ namespace Backend.Erp.Skeleton.Api.Controllers.v1
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult> Login([FromBody] LoginUserRequest model)
+        public async Task<ActionResult> Login([FromBody] LoginRequest model)
         {
             var sendRequest = new LoginUserCommand(model);
             var result = await Mediator.Send(sendRequest);

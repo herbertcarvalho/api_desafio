@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Backend.Erp.Skeleton.Application.Commands.Authorization
 {
-    public record LoginUserCommand(LoginUserRequest Request) : IRequest<Result<UsuarioToken>>;
+    public record LoginUserCommand(LoginRequest Request) : IRequest<Result<UsuarioToken>>;
 
     public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, Result<UsuarioToken>>
     {

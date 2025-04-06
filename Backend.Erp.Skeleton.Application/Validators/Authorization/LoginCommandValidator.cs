@@ -3,9 +3,9 @@ using FluentValidation;
 
 namespace Backend.Erp.Skeleton.Application.Validators.Authorization
 {
-    internal class LoginUserCommandValidator : AbstractValidator<LoginUserCommand>
+    internal class LoginCommandValidator : AbstractValidator<LoginUserCommand>
     {
-        public LoginUserCommandValidator()
+        public LoginCommandValidator()
         {
             RuleFor(x => x.Request)
                 .NotNull();

@@ -54,6 +54,8 @@ using (var dbContext = serviceProvider.GetRequiredService<ApplicationDbContext>(
     var seedData = new IntegrationDataTestStarter(serviceProvider);
     await seedData.ExecuteSeedDataTests(report);
 
+    await ValidatorsTestStarter.ExecuteValidatorsTests(report);
+
     WriteTextCmd("Starting Drop Database");
     try
     {

@@ -7,9 +7,9 @@ using static Backend.Erp.Skeleton.Application.Validators.Authorization.Authoriza
 
 namespace Backend.Erp.Skeleton.Application.Validators.Authorization
 {
-    public class LoginUserRequestValidator : AbstractValidator<LoginUserRequest>
+    public class LoginRequestValidator : AbstractValidator<LoginRequest>
     {
-        public LoginUserRequestValidator()
+        public LoginRequestValidator()
         {
             RuleFor(x => x.Email)
                 .NotEmpty()
@@ -38,7 +38,6 @@ namespace Backend.Erp.Skeleton.Application.Validators.Authorization
 
             RuleFor(x => x.Password)
                 .Matches(new Regex(@"[!@#$%^&*(),.?""':{}|<>]")).WithMessage("É necessário inserir um símbolo.");
-
         }
     }
 }
