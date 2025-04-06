@@ -1,4 +1,7 @@
-﻿namespace Tests
+﻿using System.ComponentModel.DataAnnotations;
+using System.Text;
+
+namespace Tests
 {
     public static class TestUtils
     {
@@ -57,6 +60,30 @@
             Console.WriteLine("");
         }
 
+        public static string GenerateFixedLengthString(int length)
+        {
+
+            var random = new Random();
+            var stringBuilder = new StringBuilder(length);
+
+            for (int i = 0; i < length; i++)
+            {
+                char randomChar = chars[random.Next(chars.Length)];
+                stringBuilder.Append(randomChar);
+            }
+
+            return stringBuilder.ToString();
+        }
+
+        public static List<string?> ValidateModel(object model)
+        {
+            var validationResults = new List<ValidationResult>();
+            var validationContext = new ValidationContext(model);
+
+            bool isValid = Validator.TryValidateObject(model, validationContext, validationResults);
+            return validationResults.Select(x => x.ErrorMessage).ToList();
+        }
+
         private static void AppendText(string message) => File.AppendAllText("TestsFailed.txt", message);
 
         private static string MethodName(this Task task)
@@ -73,5 +100,8 @@
         }
 
         private static string MethodName(this Action action) => action.Method.Name;
+
+        private const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
     }
 }

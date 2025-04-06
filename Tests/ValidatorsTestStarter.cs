@@ -9,6 +9,7 @@ namespace Tests
         {
             WriteTextCmd("Starting Validators Tests");
             await new LoginRequestValidatorTest().ExecuteTestsAsync(report);
+            await new RegisterUserRequestValidatorTest().ExecuteTestsAsync(report);
         }
     }
 }
