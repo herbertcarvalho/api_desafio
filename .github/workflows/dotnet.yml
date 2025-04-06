@@ -5,9 +5,9 @@ name: .NET
 
 on:
   push:
-    branches: [ "main","test_workflow" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "main" ,"test_workflow"]
+    branches: [ "main" ]
 
 jobs:
   integration-tests:
