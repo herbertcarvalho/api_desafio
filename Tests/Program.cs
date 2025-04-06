@@ -82,15 +82,11 @@ using (var dbContext = serviceProvider.GetRequiredService<ApplicationDbContext>(
     Console.WriteLine($"################# {report.Item1[0]} tests is wrong #################");
     Console.WriteLine("");
 
+    Environment.Exit(1);
+
     if (report.Item1[0].Equals(0))
-    {
         Console.WriteLine("All tests have completed and success , congrats!!");
-        Console.WriteLine("::success::Your tests did NOT complete successfully. See TestsFailed.txt for details.");
-    }
     else
-    {
         Console.WriteLine("Your tests is NOT completed with success ,please check the archive TestsFailed.txt");
-        Console.WriteLine("::error::Your tests did NOT complete successfully. See TestsFailed.txt for details.");
-        Environment.Exit(1);
-    }
+
 }
