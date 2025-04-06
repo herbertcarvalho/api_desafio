@@ -3,7 +3,7 @@ using FluentValidation;
 
 namespace Backend.Erp.Skeleton.Application.Validators.Authorization
 {
-    internal class LoginCommandValidator : AbstractValidator<LoginUserCommand>
+    internal class LoginCommandValidator : AbstractValidator<LoginCommand>
     {
         public LoginCommandValidator()
         {

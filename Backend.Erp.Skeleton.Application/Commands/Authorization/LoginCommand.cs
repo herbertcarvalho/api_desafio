@@ -11,16 +11,16 @@ using System.Threading.Tasks;
 
 namespace Backend.Erp.Skeleton.Application.Commands.Authorization
 {
-    public record LoginUserCommand(LoginRequest Request) : IRequest<Result<UsuarioToken>>;
+    public record LoginCommand(LoginRequest Request) : IRequest<Result<UsuarioToken>>;
 
-    public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, Result<UsuarioToken>>
+    public class LoginCommandHandler : IRequestHandler<LoginCommand, Result<UsuarioToken>>
     {
         private readonly UserManager<IdentityUser<int>> _userManager;
         private readonly SignInManager<IdentityUser<int>> _signInManager;
         private readonly IAuthHelper _authHelper;
         private readonly IPersonsRepository _personsRepository;
 
-        public LoginUserCommandHandler(
+        public LoginCommandHandler(
             SignInManager<IdentityUser<int>> signInManager,
             IAuthHelper authHelper,
             UserManager<IdentityUser<int>> userManager,
@@ -32,7 +32,7 @@ namespace Backend.Erp.Skeleton.Application.Commands.Authorization
             _personsRepository = personsRepository;
         }
 
-        public async Task<Result<UsuarioToken>> Handle(LoginUserCommand request, CancellationToken cancellationToken)
+        public async Task<Result<UsuarioToken>> Handle(LoginCommand request, CancellationToken cancellationToken)
         {
             var result = await _signInManager.PasswordSignInAsync(request.Request.Email,
                 request.Request.Password, isPersistent: false, lockoutOnFailure: true);

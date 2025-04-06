@@ -56,6 +56,9 @@ using (var dbContext = serviceProvider.GetRequiredService<ApplicationDbContext>(
 
     await ValidatorsTestStarter.ExecuteValidatorsTests(report);
 
+    var unitTest = new UnitTestStarter(serviceProvider);
+    await unitTest.ExecuteUnitTests(report);
+
     WriteTextCmd("Starting Drop Database");
     try
     {
