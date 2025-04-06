@@ -35,7 +35,7 @@ namespace Tests.IntegrationTest
 
         private async Task MapPerson()
         {
-            var person = await _personsRepository.AddAsync(new Persons()
+            await _personsRepository.AddAsync(new Persons()
             {
                 IdUser = 1,
                 IdUserType = (int)UserTypeEnum.Company,
