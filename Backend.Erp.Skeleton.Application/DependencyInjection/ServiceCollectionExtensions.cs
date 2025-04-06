@@ -33,6 +33,7 @@ namespace Backend.Erp.Skeleton.Application.DependencyInjection
 
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
+            services.AddScoped<IMinIoServices, MinIoServices>();
             return services;
         }
 

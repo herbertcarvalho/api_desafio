@@ -13,7 +13,7 @@ namespace Backend.Erp.Skeleton.Application.DTOs.Response.Product
         public bool Active { get; set; }
         public string LinkImage { get; set; }
 
-        public GetProductsResponse(Products products)
+        public GetProductsResponse(Products products, string url)
         {
             Id = products.Id;
             Name = products.Name;
@@ -23,7 +23,7 @@ namespace Backend.Erp.Skeleton.Application.DTOs.Response.Product
             NameCategory = products.Category.Name;
             Price = products.Price;
             Active = products.Status;
-            LinkImage = products.Image;
+            LinkImage = url;
         }
     }
 }

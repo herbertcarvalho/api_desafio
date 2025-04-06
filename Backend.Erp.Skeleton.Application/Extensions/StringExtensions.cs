@@ -179,5 +179,30 @@ namespace Backend.Erp.Skeleton.Application.Extensions
             var isBase64 = Convert.TryFromBase64String(input, new Span<byte>(new byte[input.Length]), out int bytes);
             return isBase64 && bytes <= 5 * 1024 * 1024;
         }
+
+        /// <summary>
+        /// Retorna o tipo de arquivo a partir do base64
+        /// </summary>
+        /// <param name="input">String</param>
+        /// <returns>Retorna string contendo tipo do arquivo.</returns>
+        public static string GetMimeTypeFromBase64(this string input)
+        {
+            byte[] bytes = Convert.FromBase64String(input);
+
+            if (bytes.Length > 8 && bytes[0] == 0x89 && bytes[1] == 0x50 && bytes[2] == 0x4E &&
+                bytes[3] == 0x47 && bytes[4] == 0x0D && bytes[5] == 0x0A &&
+                bytes[6] == 0x1A && bytes[7] == 0x0A)
+                return "image/png";
+
+            if (bytes.Length > 2 && bytes[0] == 0xFF && bytes[1] == 0xD8)
+                return "image/jpeg";
+
+            // Check PDF
+            if (bytes.Length > 4 && bytes[0] == 0x25 && bytes[1] == 0x50 &&
+                bytes[2] == 0x44 && bytes[3] == 0x46)
+                return "application/pdf";
+
+            return null;
+        }
     }
 }
