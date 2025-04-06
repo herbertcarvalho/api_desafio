@@ -1,0 +1,53 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: .NET
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  integration-tests:
+    runs-on: ubuntu-latest
+
+    services:
+      docker:
+        image: docker:20.10.7
+        options: --privileged
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Set up Docker Compose
+      run: |
+        docker-compose --version
+
+    - name: Build and Start Docker Services
+      run: docker-compose up -d
+
+    - name: Wait for services to be ready (e.g., Postgres or API)
+      run: |
+        echo "Waiting for services..."
+        sleep 30
+
+    - name: Set up .NET SDK
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '9.0.x'
+
+    - name: Restore
+      run: dotnet restore
+
+    - name: Build
+      run: dotnet build --no-restore
+
+    - name: Run Tests
+      run: dotnet test ./tests/YourTests.csproj
+
+    - name: Tear Down Docker
+      if: always()
+      run: docker-compose down
