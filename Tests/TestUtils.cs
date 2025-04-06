@@ -75,13 +75,18 @@ namespace Tests
             return stringBuilder.ToString();
         }
 
-        public static List<string?> ValidateModel(object model)
+        public static List<string> ValidateModel(object model)
         {
             var validationResults = new List<ValidationResult>();
             var validationContext = new ValidationContext(model);
 
-            bool isValid = Validator.TryValidateObject(model, validationContext, validationResults);
-            return validationResults.Select(x => x.ErrorMessage).ToList();
+            bool isValid = Validator.TryValidateObject(model, validationContext, validationResults, true);
+
+            var list = new List<string>();
+            foreach (ValidationResult validationResult in validationResults)
+                if (validationResult.ErrorMessage != null)
+                    list.Add(validationResult.ErrorMessage);
+            return list;
         }
 
         private static void AppendText(string message) => File.AppendAllText("TestsFailed.txt", message);
