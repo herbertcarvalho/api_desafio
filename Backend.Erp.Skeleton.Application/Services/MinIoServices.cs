@@ -64,11 +64,34 @@ namespace Backend.Erp.Skeleton.Application.Services
         private async Task EnsureBucketExistsAsync()
         {
             bool found = await _minioClient.BucketExistsAsync(new BucketExistsArgs().WithBucket(_bucketName));
-            if (!found)
-            {
-                await _minioClient.MakeBucketAsync(new MakeBucketArgs().WithBucket(_bucketName));
-                Console.WriteLine($"Bucket '{_bucketName}' created.");
-            }
+            if (found)
+                return;
+
+            await _minioClient.MakeBucketAsync(new MakeBucketArgs().WithBucket(_bucketName));
+            Console.WriteLine($"Bucket '{_bucketName}' created.");
+            await SetBucketPolicyPublicAsync();
+        }
+
+        private async Task SetBucketPolicyPublicAsync()
+        {
+            string policyJson = $@"
+            {{
+                ""Version"": ""2012-10-17"",
+                ""Statement"": [
+                    {{
+                        ""Effect"": ""Allow"",
+                        ""Principal"": {{""AWS"": [""""]}},
+                        ""Action"": [""s3:GetObject""],
+                        ""Resource"": [""arn:aws:s3:::{_bucketName}/*""]
+                    }}
+                ]
+            }}";
+
+            await _minioClient.SetPolicyAsync(new SetPolicyArgs()
+                .WithBucket(_bucketName)
+                .WithPolicy(policyJson));
+
+            Console.WriteLine($"Bucket '{_bucketName}' is now public.");
         }
     }
 }
