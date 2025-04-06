@@ -6,6 +6,7 @@ using Backend.Erp.Skeleton.Infrastructure.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
+using Tests;
 using static Tests.TestUtils;
 
 var services = new ServiceCollection();
@@ -50,19 +51,8 @@ using (var dbContext = serviceProvider.GetRequiredService<ApplicationDbContext>(
         Console.WriteLine($"Error migrating database: {ex.Message}");
     }
 
-    //EXECUTA IntegrationTests
-    /*WriteTextCmd("Starting Integration Tests");
     var seedData = new IntegrationDataTestStarter(serviceProvider);
     await seedData.ExecuteSeedDataTests(report);
-
-    //EXECUTA ValidatorsTests
-    WriteTextCmd("Starting Validators Tests");
-    await ValidatorsTestStarter.ExecuteValidatorsTests(report);
-
-    //EXECUTA UnitTests
-    WriteTextCmd("Starting Unit Tests");
-    var unitTest = new UnitTestStarter(serviceProvider);
-    await unitTest.ExecuteUnitTests(report);*/
 
     WriteTextCmd("Starting Drop Database");
     try
@@ -82,11 +72,11 @@ using (var dbContext = serviceProvider.GetRequiredService<ApplicationDbContext>(
     Console.WriteLine($"################# {report.Item1[0]} tests is wrong #################");
     Console.WriteLine("");
 
-    Environment.Exit(1);
-
     if (report.Item1[0].Equals(0))
         Console.WriteLine("All tests have completed and success , congrats!!");
     else
+    {
         Console.WriteLine("Your tests is NOT completed with success ,please check the archive TestsFailed.txt");
-
+        Environment.Exit(1);
+    }
 }

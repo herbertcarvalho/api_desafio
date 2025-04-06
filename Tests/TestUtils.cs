@@ -15,7 +15,7 @@
                 Console.WriteLine("ERRO - REVISE O NOME DESSE TESTE");
                 tuple.Item1[0]++;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 AppendText(NameOfTest ?? func.MethodName());
                 Console.WriteLine($"Error   on test {NameOfTest ?? func.MethodName()}");
