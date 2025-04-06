@@ -10,7 +10,6 @@ namespace Backend.Erp.Skeleton.Application.Validators.Product
     {
         public UpdateProductRequestValidator()
         {
-
             RuleFor(x => x.Price)
                 .Must(x => x.GreaterThanZero())
                 .WithMessage(GreaterThanZeroMessage(price));

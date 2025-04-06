@@ -11,7 +11,7 @@ namespace Tests.ValidatorQueryTests.Product
 {
     public class UpdateProductRequestValidatorTest() : BaseValidators, ITest
     {
-        private string PRICE_INVALID = GreaterThanZeroMessage(idCategory);
+        private string PRICE_INVALID = GreaterThanZeroMessage(price);
 
         private string NAME_EMPTY_MESSAGE = NotEmptyMessage(name);
         private string NAME_NULL_MESSAGE = NotNullMessage(name);

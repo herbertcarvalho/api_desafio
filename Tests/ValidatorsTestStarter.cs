@@ -26,6 +26,7 @@ namespace Tests
             await new PageOptionQueryTest().ExecuteTestsAsync(report);
             await new DeleteProductQueryTest().ExecuteTestsAsync(report);
             await new UpdateProductQueryTest().ExecuteTestsAsync(report);
+            await new GetProductsQueryTest().ExecuteTestsAsync(report);
         }
     }
 }
