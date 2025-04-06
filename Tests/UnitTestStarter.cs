@@ -28,6 +28,8 @@ namespace Tests
             //PRODUCTS
             await new CreateProductCommandUnitTest(ServiceProvider).ExecuteTestsAsync(report);
             await new UpdateProductCommandUnitTest(ServiceProvider).ExecuteTestsAsync(report);
+            await new GetProductsFilteredCommandUnitTest(ServiceProvider).ExecuteTestsAsync(report);
+            await new DeleteProductCommandUnitTest(ServiceProvider).ExecuteTestsAsync(report);
         }
     }
 }
