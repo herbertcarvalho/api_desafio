@@ -1,5 +1,7 @@
 ﻿using Backend.Erp.Skeleton.Application.Commands.Authorization;
 using Backend.Erp.Skeleton.Application.DTOs.Request.Authorization;
+using Backend.Erp.Skeleton.Application.DTOs.Response.Authorization;
+using Backend.Erp.Skeleton.Domain.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -18,7 +20,7 @@ namespace Backend.Erp.Skeleton.Api.Controllers.v1
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult> Login([FromBody] LoginRequest model)
+        public async Task<ActionResult<Result<UsuarioToken>>> Login([FromBody] LoginRequest model)
         {
             var sendRequest = new LoginCommand(model);
             var result = await Mediator.Send(sendRequest);
@@ -26,7 +28,7 @@ namespace Backend.Erp.Skeleton.Api.Controllers.v1
         }
 
         [HttpPost("register")]
-        public async Task<ActionResult> ResetPassword([FromBody] RegisterUserRequest model)
+        public async Task<ActionResult<Result<UsuarioToken>>> ResetPassword([FromBody] RegisterUserRequest model)
         {
             var sendRequest = new RegisterUserCommand(model);
             var result = await Mediator.Send(sendRequest);
